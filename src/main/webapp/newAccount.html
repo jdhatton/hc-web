@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="icon" href=".img/favicon.ico">
+    <title>Homeroom Technologies LLC.</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./css/stickyFooterNavBar.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--  <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+      .center_div{
+        margin: 0 auto;
+        width:80% /* value of your choice which suits your alignment */
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="index.html"><img src="./img/homeroom-logo-1.png" alt="Smiley face" height="50" width="80"></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="policy.html">Policy</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="#">|</a></li>
+            <li class="active"><a href="createAccount.html">Create Account</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="page-header">
+        <h1>Create Account</h1>
+      </div>
+     
+     <div class="container center_div" > 
+      <form id="newAccountForm" role="form" data-toggle="validator">  
+             
+       <div class="form-group col-xs-5 col-lg-5">  
+        <div class="form-group">
+          <label for="exampleInputEmail1">Tell us who you are:</label>
+          <select  class="form-control" id="role" name="role" required>
+            <option>Choose a role</option>
+            <option>Teacher</option>
+            <option>Parent</option>
+            <option>Child</option>
+            <option>Administrative</option>
+            <option>Other</option>
+          </select>
+          <!-- <div class="help-block with-errors"></div> -->
+          <span data-alertid="role"></span>
+        </div> 
+        <div class="form-group">
+          <label for="token">Token</label>
+          <input  type="text" class="form-control" id="token" placeholder="Token from invitation email." required>
+          <div class="help-block with-errors"></div>
+          <span data-alertid="token"></span>
+       </div>
+       <div class="form-group">  
+          <label for="firstName">First Name:</label>
+          <input  type="text" class="form-control" id="firstName" placeholder="Your first name" required>
+          <div class="help-block with-errors"></div>
+          <span data-alertid="firstName"></span>
+       </div>
+       <div class="form-group">      
+          <label for="lastName">Last Name:</label>
+          <input  type="text" class="form-control" id="lastName" placeholder="Your last name" required>
+          <div class="help-block with-errors"></div>
+          <span data-alertid="lastName"></span>
+       </div>
+       <div class="form-group">   
+          <label for="email">Email address</label>
+          <input  type="email" class="form-control" id="email" placeholder="Provide Your Email" data-error="Bruh, that email address is invalid" required>
+          <div class="help-block with-errors"></div>
+          <span data-alertid="email"></span>
+       </div>
+       <div class="form-group">    
+          <label for="password">Password</label>
+          <input  type="password" class="form-control" id="password" placeholder="Provided a Password" required>
+          <div class="help-block with-errors"></div>
+          <span data-alertid="password"></span>
+       </div>
+         
+          <label for="rememberMe"></label>
+                <div class="form-group login-group-checkbox">
+                  <input  type="checkbox" id="rememberMe" name="rememberMe" >
+                  <label for="rememberMe">remember me</label>
+                </div>
+          <button id="postFormBtn" name="postFormBtn" type="button" class="btn btn-lg btn-primary btn-block" >Submit</button>
+       </div>
+       
+       <span data-alertid="auth"></span>
+      </form>
+    </div>
+  </div>
+
+
+ 	<footer class="footer" style="color:#99979c;text-align:center;background-color:#2a2730">
+       <div class="container"> 
+      
+      <p> 
+         <a href="forgotPassword.html">Forgot Password</a> 
+         <a href="register.html">Register</a> 
+         <a href="support.html">Support</a>
+         <a href="marketing.html">Marketing</a> 
+         <a href="policy.html">Policy</a>
+         <a href="parentMain.html">Parent Main</a>
+         <a href="https://twitter.com/homeroomtechn" target=_blank>Twitter</a>. 
+      </p> 
+           
+    </div> 
+    </footer>  
+
+
+
+    <!-- Bootstrap / JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/jquery.session.js"></script>
+	<script src="js/Utilz.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery-bs-formalerts-0.1.3/js/jquery.bsFormAlerts.js"></script>
+    <script src="js/jquery-bs-formalerts-0.1.3/js/prettify.js"></script>
+     
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    -->
+ 
+	  <script>
+	  $( document ).ready(function() {
+		console.log('JQuery Loading...');
+	    console.log( "The DOM is now loaded and can be manipulated." );
+	    
+	    var cookies =  $.cookie();
+	    console.log('COOKIES:  ' + cookies);
+		
+	    var emailCookie = $.cookie('hcRest_email');
+	    var passwCookie = $.cookie('hcRest_passw');
+	    console.log('email  :  ' + emailCookie);
+	    console.log('passw  :  ' + passwCookie);
+	    
+	    if(emailCookie != undefined ){
+	    	if(passwCookie != undefined ){
+	    		//
+	    		// TODO: process to logon.
+	    		//
+	    		if( $.session.get('email') != undefined ) {
+	    			if( $.session.get('password') != undefined ) {
+	    				alert(' Found the cookied and the session vars. Routing you to main page. ');
+		    		}
+	    		}
+	    		
+	    		alert(' Cookie found! Soon we will be logging you on here :) ');
+	  
+	  			// On success of REST logon - create session vars.
+			    	//$.session.set('email', $('#email').val());
+	 		    	//$.session.set('passw', $('#password').val());
+			    	//$.session.set('userId', 'TBD'');
+	 		    	//$.session.set('userData', 'TBD'');
+	    	}
+	    }
+	    
+	    //
+	    // token param - if there is one we need to pre-populate. 
+	    //
+	    var token = $.urlParam('token');
+	    if(token.length > 0){
+	    	console.log('token = ' + token);
+	    	$('#token').val(token);
+	    	$('#token').prop("readonly", true);
+	    }
+	    
+	  });
+  </script> 
+ 
+    <script>
+    	console.log('>>  begin scripting - new template');
+
+		$(document).ready(function() {
+
+			 $('.btn').click(function () {
+			    console.log('form submitting jquery...');
+	 			 	
+			    var role      =   $('#role').val();
+			 	var token     =   $('#token').val();
+		 		var firstName =   $('#firstName').val();
+		 		var lastName  =   $('#lastName').val();
+		 		var email     =   $('#email').val();
+		 		var password  =   $('#password').val();
+		 		
+				console.log('role = ' + $('#role').val() );
+				console.log('token = ' + $('#token').val() );
+				console.log('firstName = ' + $('#firstName').val() );
+				console.log('lastName = ' + $('#lastName').val() );
+				console.log('email = ' + $('#email').val() );
+				console.log('password = ' + $('#password').val() );
+				 
+		 		if ( ( role.length > 0 && role != "Choose a role" ) && token.length > 0 && firstName.length > 0 && lastName.length > 0 && email.length > 0 && password.length > 0 ) { 
+						var newAccount = new Object();
+						newAccount.role = role;
+						newAccount.token = token;
+						newAccount.firstName = firstName;
+						newAccount.lastName = lastName;
+						newAccount.email = email;
+						newAccount.password = password;
+						newAccount.rememberMe = rememberMe;
+						
+						console.log("\n  ====>>>>       FORM IS VALID !!!");
+					    
+		 				$.ajax({
+						    type: "POST",
+						    dataType: 'json',
+						    url: '/createAccount',
+						    data: JSON.stringify({newAccount}),
+						    contentType: "application/json; charset=utf-8",
+						    success: function(data){ 
+								 var respEmail = data.email;
+								 var respPassw = data.password;
+								 var respAuthd = data.authenticated;
+								 var userId = data.id;
+								 var role = data.role;
+			
+								 console.log('>>returned  role  : '+ role);
+						    	 console.log('>>returned  userId  : '+ userId);
+						    	
+						    	 if( userId > 0){
+		
+						    		console.log(' User Created :  '+ userId );
+						    		
+						  			// On success of REST logon - create session vars.
+								    $.session.set('email', respEmail );
+						 		    $.session.set('passw', respPassw );
+						 		    $.session.set('role' , role );
+						 		    $.session.set('userId' , userId);
+						 		    $.session.set('authenticated' , 'YES');
+						 		    
+						 		 	if(role == '0'){
+						    			window.location.href = '/teacherMain.html';
+						    		} else if(data.role == '1'){
+						    			window.location.href = '/parentMain.html';
+						    		}
+						    	} else {
+						    		console.log(' FAILED - AUTHENTICATED !!! ');
+						    		//
+						    		// set a error message 
+						    		//
+									 $(document).trigger("set-alert-id-auth", [ {
+											message : "There is already an account with that email addresss.",
+											priority : "error"
+										} ]);
+						    	}
+						    },
+						    failure: function(errMsg) {
+						    	console.log('>> It did not work : '+ errMsg);
+								 $(document).trigger("set-alert-id-auth", [ {
+										message : "There is already an account with that email addresss.",
+										priority : "error"
+									} ]);
+						    }
+						}); 
+						
+		 		} 
+		 		else {
+		 			console.log("\n =====>>>>    FORM IS STILL NOT VALID   !!!!!   ");
+		 			
+		 			if(role.length  < 1 || role == "Choose a role") {
+						 $(document).trigger("set-alert-id-role", [ {
+								message : "Please choose your role.",
+								priority : "error"
+							} ]);
+		 			} else {
+		 				$(document).trigger("set-alert-id-role", [ {
+							message : "",
+							priority : "none"
+						} ]);
+		 			}
+		 			
+		 			//
+		 			// Token
+		 			//
+		 			if(token.length < 1 ) {
+						 $(document).trigger("set-alert-id-token", [ {
+								message : "Please provide the token from the invite you received.",
+								priority : "error"
+							} ]);
+		 			} else {
+		 				$(document).trigger("set-alert-id-token", [ {
+							message : "",
+							priority : "none"
+						} ]);
+		 			}
+		 			
+		 			//
+		 			// FirstName
+		 			//
+		 			if(firstName.length  < 1 ) {
+						 $(document).trigger("set-alert-id-firstName", [ {
+								message : "Please provide your first name.",
+								priority : "error"
+							} ]);
+		 			} else {
+		 				$(document).trigger("set-alert-id-firstName", [ {
+							message : "",
+							priority : "none"
+						} ]);
+		 			}
+		 			
+		 			//
+		 			// LastName
+		 			//
+		 			if(lastName.length  < 1 ) {
+						 $(document).trigger("set-alert-id-lastName", [ {
+								message : "Please provide your last name.",
+								priority : "error"
+							} ]);
+		 			} else {
+		 				$(document).trigger("set-alert-id-lastName", [ {
+							message : "",
+							priority : "none"
+						} ]);
+		 			}
+		 			//
+		 			// Email
+		 			//
+		 			if(email.length  < 1 ) {
+						 $(document).trigger("set-alert-id-email", [ {
+								message : "Please provide your email.",
+								priority : "error"
+							} ]);
+		 			} else {
+		 				$(document).trigger("set-alert-id-email", [ {
+							message : "",
+							priority : "none"
+						} ]);
+		 			}
+		 			//
+		 			// Password
+		 			//
+		 			if(password.length  < 1 ) {
+						 $(document).trigger("set-alert-id-password", [ {
+								message : "Please provide a password for your account.",
+								priority : "error"
+							} ]);
+		 			} else {
+		 				$(document).trigger("set-alert-id-password", [ {
+							message : "",
+							priority : "none"
+						} ]);
+		 			}
+		 			
+		 		}
+			 });		
+		});
+		
+		
+ 		$.urlParam = function(name){
+			var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+			if(results != undefined){
+				
+				return results[1] || 0;
+			} else {
+				
+				return '';
+			}
+		} 
+	</script>
+  </body>
+</html>

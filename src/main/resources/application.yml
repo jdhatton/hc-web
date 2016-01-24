@@ -1,0 +1,46 @@
+spring:
+    application:
+        name: hcrest
+server:
+    port: 9900
+   
+app.docs: http://localhost:9900/
+
+# Database settings.
+database:
+
+  # the name of your JDBC driver
+  driverClass: org.h2.Driver
+
+  # the username
+  user: sa
+
+  # the password
+  password: sa
+
+  # the JDBC URL
+  url: jdbc:h2:./target/example
+
+# Logging settings.
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: ALL
+
+  # Logger-specific levels.
+  loggers:
+
+    # Sets the level for 'com.example.app' to DEBUG.
+    com.hc: ALL
+
+    org.hibernate.SQL: ALL
+
+  appenders:
+    - type: console
+    - type: file
+      threshold: DEBUG
+      logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg %n"
+      currentLogFilename: opt/logs/hc-web-application.log
+      archivedLogFilenamePattern: opt/logs/hc-web-application-%d{yyyy-MM-dd}.log
+      archivedFileCount: 8
+      timeZone: UTC

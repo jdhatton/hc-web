@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Technology">
+    <meta name="author" content="Homeroom">
+    <link rel="icon" href=".img/favicon.ico">
+    <title>Homeroom Technologies LLC.</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="./css/stickyFooterNavBar.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--  <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+      .center_div{
+        margin: 0 auto;
+        width:80% /* value of your choice which suits your alignment */
+      }
+    </style>
+ 
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="index.html"><img src="./img/homeroom-logo-1.png" alt="Smiley face" height="50" width="80"></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="policy.html">Policy</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="#">|</a></li>
+            <li class="active"><a href="createAccount.html">Create Account</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="page-header">
+        <h1>Create Account</h1>
+      </div>
+     
+     <div class="container center_div" > 
+      <form  method="post" action="http://localhost:9100/createAccount"  >  
+        <div class="form-group col-xs-5 col-lg-5">
+          <label for="exampleInputEmail1">Tell us who you are:</label>
+          <select ng-model="formData.role" class="form-control">
+            <option>Choose a role</option>
+            <option>Teacher</option>
+            <option>Parent</option>
+            <option>Child</option>
+            <option>Administrative</option>
+            <option>Other</option>
+          </select>
+         
+          <label for="token">Token</label>
+          <input ng-model="formData.token" type="text" class="form-control" id="token" placeholder="Token from invitation email.">
+         
+          <label for="firstName">First Name:</label>
+          <input ng-model="formData.firstName" type="text" class="form-control" id="firstName" placeholder="Your first name">
+          
+          <label for="lastName">Last Name:</label>
+          <input ng-model="formData.lastName" type="text" class="form-control" id="lastName" placeholder="Your last name">
+         
+          <label for="email">Email address</label>
+          <input ng-model="formData.email" type="email" class="form-control" id="email" placeholder="Provide Your Email">
+         
+          <label for="password">Password</label>
+          <input ng-model="formData.password" type="password" class="form-control" id="password" placeholder="Provided a Password">
+         
+          <label for="rememberMe"></label>
+                <div class="form-group login-group-checkbox">
+                  <input ng-model="formData.rememberMe" type="checkbox" id="rememberMe" name="rememberMe" ng-true-value="yes" ng-false-value="no">
+                  <label for="rememberMe">remember me</label>
+                </div>
+          <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="myForm.submitTheForm()">Submit</button>
+      </form>
+    </div>
+  </div>
+
+
+ <footer class="footer" style="color:#99979c;text-align:center;background-color:#2a2730">
+       <div class="container"> 
+<!--       <ul class="footer-links"> 
+        <li><a href="forgotPassword.html">Forgot Password</a></li> 
+        <li><a href="register.html">Register</a></li> 
+        <li><a href="support.html">Support</a></li> 
+        <li><a href="marketing.html">Marketing</a></li> 
+        <li><a href="policy.html">Policy</a></li>
+        <li><a href="parentMain.html">Parent Main</a></li>
+      </ul>  -->
+      
+      <p>If you haven't already 
+           <a href="register.html" target=_blank>Create Account</a> ! check us out on  
+           <a href="https://twitter.com/homeroomtechn" target=_blank>Twitter</a>. </p> 
+           
+    </div> 
+    </footer>  
+
+
+
+
+    <!-- Bootstrap / JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script> -->
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+   
+ 
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    -->
+    <!-- JavaScript Includes -->
+    <!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.2/angular.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/site.js"></script> -->
+    
+<script>
+     angular.module("myapp", [])
+     .controller("MyController", function($scope, $http) {
+       $scope.myForm = {};
+       $scope.myForm.role =  '';
+       $scope.myFormtoken =  '';
+       $scope.myForm.firstName =  '';
+       $scope.myForm.email =  '';
+       $scope.myForm.password = '';
+       $scope.myForm.rememberMe = 'YES';
+
+     $scope.myForm.submitTheForm = function(item, event) {
+       console.log("--> Submitting form");
+       var dataObject = {
+           role : $scope.myForm.role
+          ,token  : $scope.myForm.token
+          ,firstName  : $scope.myForm.firstName
+          ,lastName  : $scope.myForm.lastName
+          ,email  : $scope.myForm.email
+          ,password  : $scope.myForm.password
+          ,rememberMe  : $scope.myForm.rememberMe
+       };
+
+       var responsePromise = $http.post("/createAccount", dataObject, {});
+       responsePromise.success(function(dataFromServer, status, headers, config) {
+          console.log(dataFromServer.title);
+       });
+        responsePromise.error(function(data, status, headers, config) {
+          alert("Submitting form failed!");
+       });
+     }
+
+  });  
+</script>
+  </body>
+</html>
