@@ -1,4 +1,4 @@
-package com.hc.rest;
+package com.hc.boot;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static springfox.documentation.schema.AlternateTypeRules.newRule;
@@ -31,6 +31,8 @@ import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import com.fasterxml.classmate.TypeResolver;
+import com.hc.rest.AccountResource;
+import com.hc.rest.GreetingController;
 
 @SpringBootApplication
 @EnableSwagger2
@@ -42,7 +44,7 @@ public class HcWebBoot {
 // 
 	
     public static void main(String[] args) {
-        SpringApplication.run(HcWebBoot.class, args);
+        SpringApplication.run(HcWebBoot.class,args);
     }
     
     @Bean

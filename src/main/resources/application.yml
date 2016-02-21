@@ -5,7 +5,7 @@ server:
     port: 9900
    
 app.docs: http://localhost:9900/
-
+  
 # Database settings.
 database:
 
@@ -21,6 +21,11 @@ database:
   # the JDBC URL
   url: jdbc:h2:./target/example
 
+# Email - JavaMail
+ email:
+     host: mail.google.com
+     port: 90
+     
 # Logging settings.
 logging:
 
