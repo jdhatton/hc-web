@@ -1,27 +1,23 @@
 package com.hc.services.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.mail.internet.MimeMessage;
-
 import org.apache.velocity.app.VelocityEngine;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.mail.javamail.MimeMessagePreparator;
-import org.springframework.stereotype.Service;
-import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.springframework.stereotype.Component;
 
 import com.hrt.data.db.beans.User;
 
-@Service
+@Component
 public class EmailServiceHelper {
 
-    private JavaMailSender mailSender;
+    @Autowired
+    private  JavaMailSender  javaMailService;
+    
     private VelocityEngine velocityEngine;
 
     public void setMailSender(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
+    	javaMailService = mailSender;
     }
 
     public void setVelocityEngine(VelocityEngine velocityEngine) {
@@ -34,19 +30,25 @@ public class EmailServiceHelper {
     }
 
     private void sendConfirmationEmail(final User user) {
-        MimeMessagePreparator preparator = new MimeMessagePreparator() {
-            public void prepare(MimeMessage mimeMessage) throws Exception {
-                MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
-                message.setTo(user.getEmail());
-                message.setFrom("homeroomtechnologies@gmail.com"); // could be parameterized...
-                Map model = new HashMap();
-                model.put("user", user);
-                String text = VelocityEngineUtils.mergeTemplateIntoString(
-                        velocityEngine, "inviteTemplate.vm", model);
-                message.setText(text, true);
-            }
-        };
-        this.mailSender.send(preparator);
+//        MimeMessagePreparator preparator = new MimeMessagePreparator() {
+//            public void prepare(MimeMessage mimeMessage) throws Exception {
+//                MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+//                message.setTo(user.getEmail());
+//                message.setFrom("homeroomtechnologies@gmail.com"); // could be parameterized...
+//                Map model = new HashMap();
+//                model.put("user", user);
+//                String text = VelocityEngineUtils.mergeTemplateIntoString(
+//                        velocityEngine, "inviteTemplate.vm", model);
+//                message.setText(text, true);
+//            }
+//        };
+//        javaMailService.send(preparator);
+    	
+    	SimpleMailMessage mailMessage=new SimpleMailMessage();
+        mailMessage.setTo(user.getEmail());
+        mailMessage.setSubject("Registration");
+        mailMessage.setText("Hello " +user.getFirstName() +"\n Your registration is successfull");
+        javaMailService.send(mailMessage);
     }
 
 }

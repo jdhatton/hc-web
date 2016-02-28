@@ -1,11 +1,28 @@
 spring:
     application:
-        name: hcrest
+        name: hcrest      
+    mail:
+       host: smtp.gmail.com
+       port: 587
+       username: homeroomtechnologies@gmail.com
+       password: superj00
+       properties.mail.smtp.auth: true 
+       properties.mail.smtp.socketFactory.port: 465
+       properties.mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+       properties.mail.smtp.socketFactory.fallback: false
+       properties.mail.smtp.ssl.enable: true
+                
 server:
     port: 9900
    
 app.docs: http://localhost:9900/
   
+  
+# Twilio Configuration
+twilio.myNumber: (913) 603-0012
+
+
+
 # Database settings.
 database:
 
@@ -21,11 +38,7 @@ database:
   # the JDBC URL
   url: jdbc:h2:./target/example
 
-# Email - JavaMail
- email:
-     host: mail.google.com
-     port: 90
-     
+    
 # Logging settings.
 logging:
 
@@ -49,3 +62,7 @@ logging:
       archivedLogFilenamePattern: opt/logs/hc-web-application-%d{yyyy-MM-dd}.log
       archivedFileCount: 8
       timeZone: UTC
+ 
+
+
+
