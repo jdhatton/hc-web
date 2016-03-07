@@ -2,6 +2,7 @@ package com.hc.rest;
 
 import javax.ws.rs.core.MediaType;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.hc.rest.dto.Account;
+import com.hc.rest.dto.SmsSendDTO;
 import com.hc.services.util.EmailServiceHelper;
 import com.hc.services.util.SmsServiceHelper;
 import com.hrt.data.db.beans.User;
@@ -92,7 +98,7 @@ public class InviteResource {
 	@RequestMapping(value = "/testSmsInvite", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON })
 	public ResponseEntity<String> testSmsInvite() {
 		try {
-			System.out.println("  \n >>> TESTING Send Email");
+			System.out.println("  \n >>> TESTING Send SMS Text Message");
 			//
 			// Test sending an SMS
 			//
@@ -116,4 +122,22 @@ public class InviteResource {
 		}
 	}
 	
+	
+	@RequestMapping(value = "/sendSmsTextMessage", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON})
+    public ResponseEntity<String> sendSmsMessage(@RequestBody final String json){  
+    	 
+    	try {
+			System.out.println(">>>  RECEIVED DATA  :  "+ json);
+			ObjectMapper mapper = new ObjectMapper();
+			SmsSendDTO dto = mapper.readValue(json, SmsSendDTO.class);
+			String sendTo = dto.getPhoneNumber();
+			String content =" Testing SMS";
+			smsHelper.sendMessage(sendTo, content);
+			return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("FAILURE", HttpStatus.BAD_REQUEST);
+		}
+    }
+
 }

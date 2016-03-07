@@ -13,6 +13,7 @@
     <link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="./css/stickyFooterNavBar.css" rel="stylesheet">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css">
+	<link href="./css/modals.css" rel="stylesheet">
    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -114,6 +115,40 @@
 				<img width="178px" src="https://cf.dropboxstatic.com/static/images/app_store_badges/ios-app-store-us-vfl0FWNkQ.svg" alt="Get in the App Store" data-js-component-id="component34830">
 			</a>
 		</div>
+		
+		
+		
+		
+		
+		
+		
+		<div class="container">		
+			<a href="#" data-toggle="modal" data-target="#login-modal">Get The App on your phone!</a>
+		</div>
+
+		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Send me an SMS text message with an Application link.</h1><br>
+				  <form id="sms-form" name="sms-form" >
+					<input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter your phone number">
+					<!--   <input type="submit" name="send" class="login loginmodal-submit" value="Send">  -->
+					<button id="postFormBtn" name="postFormBtn" type="button" class="btn btn-lg btn-primary btn-block" >Send 2</button> 
+				  </form>
+				  <span data-alertid="auth"></span>	
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 
 	<footer class="footer" style="color: #99979c; text-align: center; background-color: #2a2730">
@@ -204,10 +239,13 @@
   </script> 
  
  
- <script src="//code.jquery.com/jquery.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
-		<script type="text/javascript">
+ 	<script src="//code.jquery.com/jquery.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
+<!-- 	<script src="js/jquery-bs-formalerts-0.1.3/js/jquery.bsFormAlerts.js"></script>
+    <script src="js/jquery-bs-formalerts-0.1.3/js/prettify.js"></script> -->
+    
+	<script type="text/javascript">
 			$(document).ready(function ($) {
 
 				// delegate calls to data-toggle="lightbox"
@@ -254,8 +292,62 @@
 						}
 					});
 				});
+				
+				
+				
+				
+				
+				
+				
+				 $('.btn').click(function () {
+					    console.log('form submitting jquery...'); 	
+					    var phoneNumber =   $('#phoneNumber').val();
+						console.log('phoneNumber = ' + $('#phoneNumber').val() );
 
-			});
+				 		if ( phoneNumber.length > 0 ) { 
+								var smsMessage = new Object();
+								smsMessage.phoneNumber = phoneNumber;
+				 				$.ajax({
+								    type: "POST",
+								    dataType: 'json',
+								    url: '/sendSmsTextMessage',
+								    data: JSON.stringify({phoneNumber}),
+								    contentType: "application/json; charset=utf-8",
+								    success: function(data){ 
+										console.log(' SMS Sent' );
+										// hide the modal
+										$('#modal').modal('hide');
+								    },
+								    failure: function(errMsg) {
+								    	console.log('>> It did not work : '+ errMsg);
+										 $(document).trigger("set-alert-id-auth", [ {
+												message : "Failed to send SMS Message: Did you provide the correct phone# ?",
+												priority : "error"
+											} ]);
+								    }
+								}); 
+								
+				 		} 
+				 		else {
+				 			console.log("\n =====>>>>    FORM IS STILL NOT VALID   !!!!!   ");
+				 			//
+				 			// Phone# Validation
+				 			//
+				 			if( (phoneNumber.length < 7) && ($.isNumeric(phoneNumber)) ) {
+								 $(document).trigger("set-alert-id-auth", [ {
+										message : "Please provide a valid phone number",
+										priority : "error"
+									} ]);
+				 			} else {
+				 				$(document).trigger("set-alert-id-auth", [ {
+									message : "",
+									priority : "none"
+								} ]);
+				 			}				 			
+				 		}
+					 });		
+				});
+				
 		</script>
  
   </body>
