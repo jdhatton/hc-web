@@ -126,7 +126,7 @@
 			<a href="#" data-toggle="modal" data-target="#login-modal">Get The App on your phone!</a>
 		</div>
 
-		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		<div class="modal fade" id="login-modal" name='login-modal' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
 					<h1>Send me an SMS text message with an Application link.</h1><br>
@@ -304,7 +304,7 @@
 					    var phoneNumber =   $('#phoneNumber').val();
 						console.log('phoneNumber = ' + $('#phoneNumber').val() );
 
-				 		if ( phoneNumber.length > 0 ) { 
+				 		if ( (phoneNumber.length > 6 && phoneNumber.length < 12 ) && ($.isNumeric(phoneNumber)) ) { 
 								var smsMessage = new Object();
 								smsMessage.phoneNumber = phoneNumber;
 				 				$.ajax({
@@ -313,10 +313,11 @@
 								    url: '/sendSmsTextMessage',
 								    data: JSON.stringify({phoneNumber}),
 								    contentType: "application/json; charset=utf-8",
-								    success: function(data){ 
+								    success: function(data){ 								    	 
 										console.log(' SMS Sent' );
 										// hide the modal
-										$('#modal').modal('hide');
+						 				$('.modal.in').modal('hide');		
+						 				window.location.href = '/landing.html';	
 								    },
 								    failure: function(errMsg) {
 								    	console.log('>> It did not work : '+ errMsg);
@@ -325,8 +326,7 @@
 												priority : "error"
 											} ]);
 								    }
-								}); 
-								
+								}); 	
 				 		} 
 				 		else {
 				 			console.log("\n =====>>>>    FORM IS STILL NOT VALID   !!!!!   ");

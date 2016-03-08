@@ -115,28 +115,29 @@ public class InviteResource {
 			// send the SMS
 			smsHelper.sendMessage("9137074459", "Dummy Test");
 
-			return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+			return new ResponseEntity<>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("FAILURE", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("failure", HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	
 	@RequestMapping(value = "/sendSmsTextMessage", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON})
-    public ResponseEntity<String> sendSmsMessage(@RequestBody final String json){  
+    public ResponseEntity<SmsSendDTO> sendSmsMessage(@RequestBody final String json){  
     	 
+		SmsSendDTO dto = null;
     	try {
 			System.out.println(">>>  RECEIVED DATA  :  "+ json);
 			ObjectMapper mapper = new ObjectMapper();
-			SmsSendDTO dto = mapper.readValue(json, SmsSendDTO.class);
+			dto = mapper.readValue(json, SmsSendDTO.class);
 			String sendTo = dto.getPhoneNumber();
 			String content =" Testing SMS";
 			smsHelper.sendMessage(sendTo, content);
-			return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+			return new ResponseEntity<>(dto, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("FAILURE", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
 		}
     }
 
