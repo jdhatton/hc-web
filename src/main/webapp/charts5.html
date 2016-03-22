@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Google Timeline Chart POC</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ 	<script type="text/javascript">
+
+ 	  google.charts.load("current", {packages:["timeline"]});
+ 	  google.charts.setOnLoadCallback(drawStuff);
+
+ 	  
+ /*  new Date(Date.UTC(Year, Month, Day, Hours, Minutes, Seconds, Milliseconds)) */
+
+ 	  
+ 	function drawStuff() {
+	 
+ 		var jsonData = "";
+ 		$.ajax({
+ 	          url: "/chartData",
+ 	          dataType: "json",
+ 	          type: "GET",
+ 	          async: false,
+ 	          statusCode: {
+ 	            404: function (response) {
+ 	                alert(404);
+ 	            },
+ 	            200: function (response) {
+ 	                //alert('RESPONSE: '+response);
+ 	                jsonData = response;
+ 	                //alert('jsonData :  '+jsonData);
+ 	            }
+ 	        	},
+ 	        	error: function (jqXHR, status, errorThrown) {
+ 	            	alert('error:'+errorThrown+" , status:"+status + " , jqXHR:"+jqXHR);
+ 	        	}
+ 	          });
+	 
+ 		window.console.log("JSON="+jsonData);
+	 
+ 		/* var remoteData = new google.visualization.DataTable(jsonData); */
+	 
+ 	    var dataTable = {
+ 	        "cols": [{
+ 	            "id": null,
+ 	            "label": "Title graph",
+ 	            "type": "string"
+ 	        }, {
+ 	            "id": null,
+ 	            "label": "Description",
+ 	            "type": "string"
+ 	        }, {
+ 	            "id": null,
+ 	            "label": "Start",
+ 	            "type": "date"
+ 	        }, {
+ 	            "id": null,
+ 	            "label": "End",
+ 	            "type": "date"
+ 	        }],
+ 	            "rows": [{
+ 	            "c": [{
+ 	                "v": "Event1"
+ 	            }, {
+ 	                "v": "#06ae00"
+ 	            }, {
+ 	                "v": new Date(2013, 10, 21, 20, 50, 0)
+ 	            }, {
+ 	                "v": new Date(2013, 10, 22, 20, 10, 0)
+ 	            }]
+ 	        }, {
+ 	            "c": [{
+ 	                "v": "Event2"
+ 	            }, {
+ 	                "v": "#fdff00"
+ 	            }, {
+ 	                "v": new Date(2013, 10, 21, 20, 0, 0)
+ 	            }, {
+ 	                "v": new Date(2013, 10, 23, 20, 10, 0)
+ 	            }]
+ 	        }, {
+ 	            "c": [{
+ 	                "v": "Event2"
+ 	            }, {
+ 	                "v": "#dd0e0e"
+ 	            }, {
+ 	                "v": new Date(2013, 10, 23, 21, 15, 0)
+ 	            }, {
+ 	                "v": new Date(2013, 10, 24, 20, 0, 0)
+ 	            }]
+ 	        }, {
+ 	            "c": [{
+ 	                "v": "Event3"
+ 	            }, {
+ 	                "v": "#dd0e0e"
+ 	            }, {
+ 	                "v": new Date(2013, 10, 21, 20, 30, 0)
+ 	            }, {
+ 	                "v": new Date(2013, 10, 21, 22, 25, 0)
+ 	            }]
+ 	        }, {
+ 	            "c": [{
+ 	                "v": "Event3"
+ 	            }, {
+ 	                "v": "#fdff00"
+ 	            }, {
+ 	                "v": new Date(2013, 10, 22, 18, 10, 0)
+ 	            }, {
+ 	                "v": new Date(2013, 10, 23, 20, 0, 0)
+ 	            }]
+ 	        }]
+ 	    };
+ 	    window.console.log("Chart loaded");
+
+ 	    var options = {
+ 	        title: "Graph",
+ 	        width: 940,
+ 	        height: 600,
+ 	        timeline: {
+ 	            groupByRowLabel: true
+ 	        },
+ 	        colors: [
+ 	            "#06ae00",
+ 	            "#fdff00",
+ 	            "#dd0e0e", ]
+ 	    };
+
+
+ 		/* var data = new google.visualization.DataTable(dataTable); */
+ 	    var data = new google.visualization.DataTable(jsonData);
+ 	   
+ 	    var elm = document.getElementById('chart_div');
+ 	    var chart = new google.visualization.Timeline(elm);
+
+ 	    chart.draw(data, options);
+ 	};
+ 
+ 	</script>
+</head>
+<body>
+
+   <div id="chart_div"></div>
+   
+</body>
+</html>
