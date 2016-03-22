@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['ID', 'X', 'Y', 'Temperature'],
+          ['',   80,  167,      150],
+          ['',   79,  136,      150],
+          ['',   78,  184,      50],
+          ['',   72,  278,      250],
+          ['',   81,  200,      250],
+          ['',   72,  170,      150],
+          ['',   68,  477,      50]
+        ]);
+
+        var options = {
+          title: 'Daily behaviors for STUDENT_NAME ',
+          colorAxis: {colors: ['green', 'yellow', 'red']},
+          hAxis: {title: 'Time of day'},
+          vAxis: {title: 'Behaviors'},
+          bubble: {
+              textStyle: {
+                fontSize: 12,
+                fontName: 'Times-Roman',
+                color: 'green',
+                bold: true,
+                italic: true
+              }
+            }
+        };
+
+        var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+  
+  
+</html>

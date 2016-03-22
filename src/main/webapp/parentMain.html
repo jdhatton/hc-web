@@ -91,8 +91,7 @@
       
       <p>If you haven't already 
            <a href="register.html" target=_blank>Create Account</a> ! check us out on  
-           <a href="https://twitter.com/homeroomtechn" target=_blank>Twitter</a>. </p> 
-           
+           <a href="https://twitter.com/homeroomtechn" target=_blank>Twitter</a>. </p>   
     </div> 
     </footer>  
 
@@ -107,7 +106,10 @@
     <script src="./bootstrap/js/bootstrap.min.js"></script>
   
   <script>
-	  $( document ).ready(function() {
+  
+  	var chart;
+  
+	$( document ).ready(function() {
 	    console.log( "The DOM is now loaded and can be manipulated." );
 
 	    var email  = $.session.get('email');
@@ -121,35 +123,25 @@
 	    console.log('role   :  ' + role);
 	    console.log('authd  :  ' + authd);
 	    console.log('userId  :  ' + userId);
+	    
+	    
+	    
+	    
+	    
+	    
 
-	  });
-  </script>
-
-    
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-	
-	
-		console.log(' AUTHENTICATED !!! ');
-				  			// On success of REST logon - create session vars.
-						    $.session.set('email', respEmail );
-				 		    $.session.set('passw', respPassw );
-				 		    $.session.set('role' , respAuthd );
-				 		    $.session.set('authenticated' , 'YES');
-	
-	
-	
-	
-	<script>
-	$(function () {
-	    $('#container').highcharts({
-
+	    chart = new Highcharts.Chart({
 	        chart: {
+	            renderTo: 'container',
 	            type: 'bubble',
+	            marginRight: 130,
+	            marginBottom: 25,
 	            plotBorderWidth: 1,
-	            zoomType: 'xy'
+	            zoomType: 'xy',
+	            events: {
+	                load: requestData
+	            }
 	        },
-
 	        title: {
 	            text: 'Student Behavior'
 	        },
@@ -162,24 +154,16 @@
 	            startOnTick: false,
 	            endOnTick: false
 	        },
-
+	        legend: {
+	            layout: 'vertical',
+	            align: 'right',
+	            verticalAlign: 'top',
+	            x: -10,
+	            y: 100,
+	            borderWidth: 0
+	        },
 	        series: [{
-	            data: [
-	                [9, 81, 63],
-	                [98, 5, 89],
-	                [51, 50, 73],
-	                [41, 22, 14],
-	                [58, 24, 20],
-	                [78, 37, 34],
-	                [55, 56, 53],
-	                [18, 45, 70],
-	                [42, 44, 28],
-	                [3, 52, 59],
-	                [31, 18, 97],
-	                [79, 91, 63],
-	                [93, 23, 23],
-	                [44, 83, 22]
-	            ],
+	            data: [ ],
 	            marker: {
 	                fillColor: {
 	                    radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
@@ -189,36 +173,52 @@
 	                    ]
 	                }
 	            }
-	        }, {
-	            data: [
-	                [42, 38, 20],
-	                [6, 18, 1],
-	                [1, 93, 55],
-	                [57, 2, 90],
-	                [80, 76, 22],
-	                [11, 74, 96],
-	                [88, 56, 10],
-	                [30, 47, 49],
-	                [57, 62, 98],
-	                [4, 16, 16],
-	                [46, 10, 11],
-	                [22, 87, 89],
-	                [57, 91, 82],
-	                [45, 15, 98]
-	            ],
-	            marker: {
-	                fillColor: {
-	                    radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
-	                    stops: [
-	                        [0, 'rgba(255,255,255,0.5)'],
-	                        [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.5).get('rgba')]
-	                    ]
-	                }
-	            }
 	        }]
-
 	    });
-	});
-	</script> 
+	    
+	     
+	    var month ='XXX';
+	    var testName ='XXX123XXX';
+	    var dataArray = [];
+	    function requestData() {
+		    $.ajax({
+		        type: "GET",
+		        url: "/chartData",
+		        data: {month: month,name: testName},
+		        dataType: 'json',
+		        success: function(data){
+		        	console.log('response data ='+ data);
+		        	dataArray = data.bubbles;
+		        	console.log('dataArray ='+ dataArray);
+		        	chart.addSeries({
+		                name: "student-data",
+		                data: data.bubbles 
+		              });
+		        	console.log('data.bubbles  =  '+data.bubbles);
+		        	chart.series[0].setData(dataArray);
+		        }
+		    });
+	    }
+
+	    	    
+	  });
+	
+	
+	//console.log(' AUTHENTICATED !!! ');
+	//-- On success of REST logon - create session vars.
+	//$.session.set('email', respEmail );
+	//$.session.set('passw', respPassw );
+	//$.session.set('role' , respAuthd );
+	//$.session.set('authenticated' , 'YES');
+  </script>
+
+    
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	
+	
+
+	
+	
   </body>
 </html>
