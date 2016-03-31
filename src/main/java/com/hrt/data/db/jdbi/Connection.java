@@ -7,11 +7,18 @@ import org.skife.jdbi.v2.Handle;
 
 public class Connection {
 	
+//	/etc/init.d/mysqld start 
+//	/etc/init.d/mysqld stop 
+//	/etc/init.d/mysqld restart 
+
 	
 //	#
 //	# JDBI Configuration
 //	#
-	private final String jdbi_connection_str="jdbc:mysql://69.164.202.243:3306/BMTS?user=dev&password=superj00";
+//	private final String jdbi_connection_str="jdbc:mysql://69.164.202.243:3306/BMTS?user=dev&password=superj00";
+	
+	private final String jdbi_connection_str="jdbc:mysql://localhost:3306/BMTS?user=root&password=";
+	
 //	private final String jdbi_jdbc_str= "jdbc:mysql://69.164.202.243:3306/BMTS";
 //	private final String jdbi_user="dev";
 //	private final String jdbi_password="dev123";
