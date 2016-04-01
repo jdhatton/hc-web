@@ -20,7 +20,7 @@
  		var jsonData = "";
  		$.ajax({
  	          url: "/chartData",
- 	          dataType: "json",
+ 	          dataType: "text",
  	          type: "GET",
  	          async: false,
  	          statusCode: {
@@ -28,9 +28,9 @@
  	                alert(404);
  	            },
  	            200: function (response) {
- 	                //alert('RESPONSE: '+response);
+ 	            	window.console.log('RESPONSE: '+response);
  	                jsonData = response;
- 	                //alert('jsonData :  '+jsonData);
+ 	               window.console.log('jsonData :  '+jsonData);
  	            }
  	        	},
  	        	error: function (jqXHR, status, errorThrown) {
@@ -39,7 +39,16 @@
  	          });
 	 
  		window.console.log("JSON="+jsonData);
-	 
+ 		
+ 		// Convert Unix timestamps to Date() objects
+		// Draw each chart
+		 
+
+			// Convert Unix timestamps to Date() objects
+			for ( var inc2 = 0; inc2 < jsonData.cols[0].rows.length; inc2++ ) {
+				jsonData.cols[0].rows[inc2].c[0].v = new Date( jsonData.cols[0].rows[inc2].c[0].v * 1000 );
+			}
+
  		/* var remoteData = new google.visualization.DataTable(jsonData); */
 	 
  	    var dataTable = {
