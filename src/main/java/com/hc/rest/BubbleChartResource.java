@@ -16,7 +16,7 @@ public class BubbleChartResource {
 
 	public BubbleChartResource() { }
 	
-    @RequestMapping(value = "/chartData", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON})
+    @RequestMapping(value = "/chartDataOLD", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON})
     public Series greeting(@RequestParam(value="name", defaultValue="World") String name) {
     	System.out.println("\n Getting Chart Data to populate the bubble chart! \n");
     	

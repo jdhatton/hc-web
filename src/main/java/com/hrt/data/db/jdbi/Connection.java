@@ -15,9 +15,9 @@ public class Connection {
 //	#
 //	# JDBI Configuration
 //	#
-//	private final String jdbi_connection_str="jdbc:mysql://69.164.202.243:3306/BMTS?user=dev&password=superj00";
+	private final String jdbi_connection_str="jdbc:mysql://69.164.202.243:3306/BMTS?user=dev&password=superj00";
 	
-	private final String jdbi_connection_str="jdbc:mysql://localhost:3306/BMTS?user=root&password=";
+//	private final String jdbi_connection_str="jdbc:mysql://localhost:3306/BMTS?user=root&password=";
 	
 //	private final String jdbi_jdbc_str= "jdbc:mysql://69.164.202.243:3306/BMTS";
 //	private final String jdbi_user="dev";
